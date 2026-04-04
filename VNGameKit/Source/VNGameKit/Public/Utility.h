@@ -24,17 +24,11 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 	// BlueprintCallable
-	UFUNCTION(BlueprintCallable, Category = "FileIO")
-	static bool LoadCSVToString(const FString& FilePath, FString& OutString);
+	UFUNCTION(BlueprintCallable, Category = "File")
+	static bool LoadFileToString(const FString& FilePath, FString& OutString);
 
-	UFUNCTION(BlueprintCallable, Category = "FileIO")
+	UFUNCTION(BlueprintCallable, Category = "File")
 	static TArray<FString> SepalateToLines(const FString& InString);
-
-	UFUNCTION(BlueprintCallable, Category = "Mod")
-	static UTexture2D* LoadTextureFromFile(const FString& FilePath);
-
-	UFUNCTION(BlueprintPure, Category = "String")
-	static FString Normalize(const FString& Input);
 
 	UFUNCTION(BlueprintCallable, Category = "File")
 	static TArray<FString> GetFolderNames(const FString& DirectoryPath);
@@ -42,27 +36,29 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "File")
 	static TArray<FString> GetCsvFileNames(const FString& DirectoryPath);
 
-	UFUNCTION(BlueprintCallable)
-	static UTextureRenderTarget2D* RenderWidgetToTexture(
-		UUserWidget* Widget,
-		int32 Width,
-		int32 Height
-	);
+	UFUNCTION(BlueprintCallable, Category = "File")
+	static TArray<FString> GetIniFileNames(const FString& DirectoryPath);
 
-	UFUNCTION(BlueprintCallable)
-	static bool SaveWidgetToPNG(
-		UUserWidget* Widget,
-		FVector2D Size,
-		const FString& Path);
+	UFUNCTION(BlueprintCallable, Category = "Texture")
+	static UTexture2D* LoadTextureFromFile(const FString& FilePath);
+
+	UFUNCTION(BlueprintCallable, Category = "Widget")
+	static UTextureRenderTarget2D* RenderWidgetToTexture(UUserWidget* Widget, int32 Width, int32 Height);
+
+	UFUNCTION(BlueprintCallable, Category = "Widget")
+	static bool SaveWidgetToPNG(UUserWidget* Widget, FVector2D Size, const FString& Path);
+
+	UFUNCTION(BlueprintPure, Category = "String")
+	static FString Normalize(const FString& Input);
 
 	/** 正規表現で文字列を抽出（括弧1個 or 全体） */
-	UFUNCTION(BlueprintPure)
+	UFUNCTION(BlueprintPure, Category = "String")
 	static TArray<FString> ExtractPattern(const FString& Input, const FString& InPattern, const bool bFullMatch);
 
 public:
 
 	// Blueprintから呼べる四則演算関数
-	UFUNCTION(BlueprintPure, Category = "VN|Math")
+	UFUNCTION(BlueprintPure, Category = "Math")
 	static double EvaluateExpression(const FString& Input);
 
 private:
