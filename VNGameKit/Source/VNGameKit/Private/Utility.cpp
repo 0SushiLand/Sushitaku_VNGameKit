@@ -436,13 +436,17 @@ double AUtility::EvaluateExpression_Internal(const FString& Expr, int32& Index)
 			SkipSpaces();
 
 			bool bNegative = false;
-			if (Index < Expr.Len() && (Expr[Index] == '+' || Expr[Index] == '-'))
-			{
-				if (Expr[Index] == '-') bNegative = true;
-				Index++;
-			}
 
-			SkipSpaces();
+			// ★ ここをループに変更
+			while (Index < Expr.Len() && (Expr[Index] == '+' || Expr[Index] == '-'))
+			{
+				if (Expr[Index] == '-')
+				{
+					bNegative = !bNegative; // マイナスが来るたびに反転
+				}
+				Index++;
+				SkipSpaces();
+			}
 
 			double Value = 0;
 
