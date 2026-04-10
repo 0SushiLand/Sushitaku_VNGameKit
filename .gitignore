@@ -1,0 +1,9 @@
+VNGameKit/Config/DefaultEngine.ini
+VNGameKit/Binaries/
+VNGameKit/DerivedDataCache/
+VNGameKit/Intermediate/
+VNGameKit/Saved/
+VNGameKit/.vs/
+VNGameKit/.vscode/
+VNGameKit/Mods/*
+!VNGameKit/Mods/ここにシナリオフォルダを入れる.txt
